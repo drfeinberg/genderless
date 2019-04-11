@@ -31,10 +31,12 @@ def measure_voices(voiceID):
     apq11Shimmer = call([sound, pointProcess], "Get shimmer (apq11)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
     ddaShimmer = call([sound, pointProcess], "Get shimmer (dda)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
 
-    if meanF0 > 170:
+    if meanF0 > 170 and meanF0 < 300:
         max_formant = 5500
-    else:
+    elif meanF0 <=170:
         max_formant = 5000
+    elif meanF0 >= 300:
+        max_formant = 8000
     formants = call(sound, "To Formant (burg)", 0.0025, 5, max_formant, 0.025, 50)
     numPoints = call(pointProcess, "Get number of points")
 
